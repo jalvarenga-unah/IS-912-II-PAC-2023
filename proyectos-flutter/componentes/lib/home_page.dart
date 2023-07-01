@@ -14,26 +14,41 @@ class HomePage extends StatelessWidget {
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                //llamar a la ruta
+                Navigator.pushNamed(context, '/listas');
+              },
               child: Text('Listas'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                //llamar a la ruta
+                Navigator.pushNamed(context, '/listas-constructor');
+              },
+              child: Text('Listas con constructor'),
             ),
             TextButton(
               onPressed: () {},
-              child: Text('Listas'),
+              child: Text('Imagenes'),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text('Imagenes'),
             ),
             FilledButton(
               onPressed: () {},
-              child: Text('Listas'),
+              child: Text('Inputs'),
             ),
             OutlinedButton(
               onPressed: () {},
-              child: Text('Listas'),
+              child: Text('Peticiones'),
             ),
             FilledButton.tonal(
               onPressed: () {},
-              child: Text('Listas'),
+              child: Text('Manejo de estado'),
             ),
           ],
         ),
