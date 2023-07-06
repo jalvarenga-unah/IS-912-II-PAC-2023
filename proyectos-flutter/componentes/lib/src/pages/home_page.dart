@@ -1,3 +1,4 @@
+import 'package:componentes/src/constantes/routes.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,14 +20,14 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 //llamar a la ruta
-                Navigator.pushNamed(context, '/listas');
+                Navigator.pushNamed(context, MyRoutes.listas.name);
               },
               child: Text('Listas'),
             ),
             ElevatedButton(
               onPressed: () {
                 //llamar a la ruta
-                Navigator.pushNamed(context, '/listas-constructor');
+                Navigator.pushNamed(context, MyRoutes.listasConstructor.name);
               },
               child: Text('Listas con constructor'),
             ),
