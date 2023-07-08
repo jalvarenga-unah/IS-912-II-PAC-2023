@@ -32,15 +32,15 @@ class HomePage extends StatelessWidget {
               child: Text('Listas con constructor'),
             ),
             TextButton(
-              onPressed: () {},
-              child: Text('Imagenes'),
-            ),
-            TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, MyRoutes.imagenes.name);
+              },
               child: Text('Imagenes'),
             ),
             FilledButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, MyRoutes.inputs.name);
+              },
               child: Text('Inputs'),
             ),
             OutlinedButton(
