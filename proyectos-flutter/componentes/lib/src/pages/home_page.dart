@@ -44,7 +44,8 @@ class HomePage extends StatelessWidget {
               child: Text('Inputs'),
             ),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () =>
+                  Navigator.pushNamed(context, MyRoutes.peticiones.name),
               child: Text('Peticiones'),
             ),
             FilledButton.tonal(

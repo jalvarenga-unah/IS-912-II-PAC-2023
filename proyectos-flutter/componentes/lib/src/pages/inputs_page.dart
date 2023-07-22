@@ -108,9 +108,12 @@ class InputsPage extends StatelessWidget {
           if (nombreController.text.isEmpty) {
             //mostrar snackbar
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Ingrese su nombre'),
-              ),
+              SnackBar(
+                  content: const Text('Ingrese su nombre'),
+                  action: SnackBarAction(
+                    label: 'Ok',
+                    onPressed: () {},
+                  )),
             );
             return;
           }
