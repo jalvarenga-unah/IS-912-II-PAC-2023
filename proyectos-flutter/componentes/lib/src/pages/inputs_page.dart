@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:componentes/src/widgets/input_form.dart';
 import 'package:flutter/material.dart';
 
 class InputsPage extends StatelessWidget {
@@ -6,6 +9,11 @@ class InputsPage extends StatelessWidget {
   final nombreController = TextEditingController(text: 'Juan');
   final apellidoController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
+  //controllers del formulario
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +29,7 @@ class InputsPage extends StatelessWidget {
               TextField(
                 controller: nombreController,
                 keyboardType: TextInputType.name,
-                obscureText: true,
+                obscureText: false,
                 style: const TextStyle(
                   color: Colors.deepPurple,
                 ),
@@ -44,25 +52,48 @@ class InputsPage extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
-                    TextFormField(
-                      decoration:
-                          InputDecoration(label: Text('Ingrese su correo')),
+                    const SizedBox(height: 20),
+                    //el correo
+                    InputForm(
+                      controller: emailController,
+                      label: 'Ingrese su correo',
+                      icon: Icons.email,
+                      keyboardType: TextInputType.emailAddress,
                       validator: (value) {
-                        if (value!.isEmpty) return 'Debe ingresar su correo';
-
+                        if (!value!.contains('@')) {
+                          return 'Ingrese un correo valido';
+                        }
                         return null;
                       },
                     ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                          label: Text('Ingrese su telefono')),
+                    const SizedBox(height: 20),
+                    //el telefono
+                    InputForm(
+                      controller: phoneController,
+                      label: 'Ingrese su telefono',
+                      icon: Icons.phone,
+                      keyboardType: TextInputType.phone,
                       validator: (value) {
-                        if (value!.isEmpty) return 'Debe ingresar su telefono';
-
-                        if (value.length < 8) return 'Ingrese un numero valido';
+                        if (value!.length != 8) {
+                          return 'Ingrese un telefono valido';
+                        }
                         return null;
                       },
-                    )
+                    ),
+                    const SizedBox(height: 20),
+                    //el telefono
+                    InputForm(
+                      controller: passwordController,
+                      label: 'Ingrese su contraseña',
+                      icon: Icons.password,
+                      keyboardType: TextInputType.visiblePassword,
+                      validator: (value) {
+                        //todas las condiciones para
+                        //una contraseña fuerte
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20),
                   ],
                 ),
               )
@@ -73,10 +104,33 @@ class InputsPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //la propiedad "text", es un getter y setter
-          print(nombreController.text);
-          apellidoController.text = 'Alvarenga';
+          // print(nombreController.text);
+          if (nombreController.text.isEmpty) {
+            //mostrar snackbar
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Ingrese su nombre'),
+              ),
+            );
+            return;
+          }
+          if (apellidoController.text.isEmpty) {
+            //mostrar snackbar
+            return;
+          }
 
-          print(formKey.currentState!.validate());
+          if (formKey.currentState!.validate()) {
+            print('Formulario valido');
+
+            final data = {
+              'email': emailController.text,
+              'phone': phoneController.text,
+              'password': passwordController.text,
+            };
+
+            //mandar a guardar al servidor
+            print(data);
+          }
         },
         child: const Icon(Icons.edit),
       ),
