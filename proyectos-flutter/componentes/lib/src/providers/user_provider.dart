@@ -2,7 +2,7 @@ import 'package:componentes/src/models/producto.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class UserProvider {
+class ProductoProvider {
   // List getUsers() {
   //   // final url = Uri.parse('https://jsonplaceholder.typicode.com/users');
   //   final users = [];
@@ -35,17 +35,24 @@ class UserProvider {
   }
 
   Future<List<Producto>> getProducts() async {
-    final url = Uri.parse('https://fakestoreapi.com/produc/');
-    final response = await http.get(url);
+    try {
+      final url = Uri.parse('https://fakestoreapi.com/products');
 
-    final List<Producto> productos = [];
+      final response = await http.get(url);
+      return productoFromJson(response.body);
+    } catch (error) {
+      throw Exception('Error al obtener los productos');
+    }
+  }
 
-    // productos.addAll(jsonDecode(response.body).map((product) {
-    //   return Producto.fromJson(product);
-    // }).toList());
+  Future<Producto> getProducto(int id) async {
+    try {
+      final url = Uri.parse('https://fakestoreapi.com/products/$id');
 
-    print(productoFromJson(response.body));
-
-    return productoFromJson(response.body);
+      final response = await http.get(url);
+      return Producto.fromJson(json.decode(response.body));
+    } catch (error) {
+      throw Exception('Error al obtener los productos');
+    }
   }
 }

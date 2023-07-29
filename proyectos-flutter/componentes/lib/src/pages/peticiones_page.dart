@@ -1,6 +1,7 @@
+import 'package:componentes/src/constantes/routes.dart';
 import 'package:componentes/src/models/producto.dart';
 import 'package:componentes/src/providers/user_provider.dart';
-import 'package:componentes/src/widgets/item_lista_usuario.dart';
+import 'package:componentes/src/widgets/custom_error_widget.dart';
 import 'package:flutter/material.dart';
 
 class PeticionesPage extends StatelessWidget {
@@ -8,7 +9,7 @@ class PeticionesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = UserProvider();
+    final userProvider = ProductoProvider();
     // final users = userProvider.getUsers();
     // print(users);
     return Scaffold(
@@ -19,20 +20,18 @@ class PeticionesPage extends StatelessWidget {
         future: userProvider.getProducts(),
         builder:
             (BuildContext context, AsyncSnapshot<List<Producto>> snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(snapshot.error.toString()),
-            );
-          }
-
           if (snapshot.connectionState == ConnectionState.none) {
             return const Center(
               child: Text('No hay conexion'),
             );
+          }
+          if (snapshot.hasError) {
+            return CustomErrorWidget(
+              errorMessage: snapshot.error.toString(),
+            );
+          }
+          if (!snapshot.hasData) {
+            return const Center(child: CircularProgressIndicator());
           }
 
           return ListaProductos(snapshot: snapshot);
@@ -73,19 +72,25 @@ class ItemProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: Column(
-      children: [
-        Image.network(
-          product.image,
-          height: 200,
-          fit: BoxFit.fitHeight,
-        ),
-        ListTile(
-          title: Text(product.title),
-          subtitle: Text(product.rating.count.toString()),
-        ),
-      ],
-    ));
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, MyRoutes.detalleProducto.name,
+            arguments: product);
+      },
+      child: Card(
+          child: Column(
+        children: [
+          Image.network(
+            product.image,
+            height: 200,
+            fit: BoxFit.fitHeight,
+          ),
+          ListTile(
+            title: Text(product.title),
+            subtitle: Text(product.rating.count.toString()),
+          )
+        ],
+      )),
+    );
   }
 }
