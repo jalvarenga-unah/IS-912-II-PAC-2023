@@ -49,7 +49,10 @@ class HomePage extends StatelessWidget {
               child: Text('Peticiones'),
             ),
             FilledButton.tonal(
-              onPressed: () {},
+              onPressed: () => Navigator.pushNamed(
+                context,
+                MyRoutes.manejoEstado.name,
+              ),
               child: Text('Manejo de estado'),
             ),
           ],

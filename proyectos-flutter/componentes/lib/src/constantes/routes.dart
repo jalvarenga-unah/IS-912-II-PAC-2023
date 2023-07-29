@@ -6,6 +6,7 @@ import 'package:componentes/src/pages/peticiones_page.dart';
 import '../pages/home_page.dart';
 import '../pages/listas_page.dart';
 import '../pages/listas_page_constructor.dart';
+import '../pages/manejo_estado_page.dart';
 
 enum MyRoutes {
   home,
@@ -14,7 +15,8 @@ enum MyRoutes {
   imagenes,
   inputs,
   peticiones,
-  detalleProducto
+  detalleProducto,
+  manejoEstado
 }
 
 final routes = {
@@ -25,4 +27,5 @@ final routes = {
   MyRoutes.inputs.name: (context) => InputsPage(),
   MyRoutes.peticiones.name: (context) => const PeticionesPage(),
   MyRoutes.detalleProducto.name: (context) => DetalleProducto(),
+  MyRoutes.manejoEstado.name: (context) => ManejoEstadoPage(),
 };

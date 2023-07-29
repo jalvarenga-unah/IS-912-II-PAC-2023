@@ -12,12 +12,19 @@ class DetalleProducto extends StatelessWidget {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as Producto;
 
+    String title = 'no-data';
+    productoProvider.getProducto(args.id).then((value) {
+      // print(value.toJson());
+      title = value.title;
+      print(title);
+    });
+
     return Scaffold(
         appBar: AppBar(
           title: Text(args.title),
         ),
         body: Center(
-          child: Text('Producto ${args.id}'),
+          child: Text('$title'),
         ));
   }
 }

@@ -1,8 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:componentes/src/controllers/contador_controller.dart';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ImagenesPage extends StatelessWidget {
   const ImagenesPage({super.key});
+
+//funciona si y solo si, hay una instancia previa en el estado de Get
+  // final contadorController = Get.find<ContadorController>();
 
   @override
   Widget build(BuildContext context) {
