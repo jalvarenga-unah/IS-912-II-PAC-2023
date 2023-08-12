@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "841452129445",
+    "project_id": "ss-unah-pac-3",
+    "storage_bucket": "ss-unah-pac-3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841452129445:android:f90d9cb6b819a2a5f9d14c",
+        "android_client_info": {
+          "package_name": "hn.edu.unah.push_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841452129445-d4nnv4rtb471pevoomb3l6s36tk3tu1e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_qAuY6tm9Wr6FvVq3xERoxakvC2-DRVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841452129445-d4nnv4rtb471pevoomb3l6s36tk3tu1e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
