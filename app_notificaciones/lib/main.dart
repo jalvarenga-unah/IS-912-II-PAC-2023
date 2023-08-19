@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //inicializamos firebase core
+  //patron singleton
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -18,7 +20,7 @@ void main() async {
 
   // usuarioid, guardar en las preferencias
   //asocia el token que se creó, al usuario que se logueó
-  print(token);
+  // print(token);
 
   //solicitamos el permiso para recibir notificaciones
   await messaging.requestPermission(
